@@ -15,18 +15,33 @@
     });
 
 //Event listeners for keys pressed, highlights each key when pressed
-    let target;
+    let presses = 0;
 
     $(document).keypress(function(e){
         target = e.which;
         $('#'+event.keyCode).addClass('pressed');
-        return target;
+        presses++;
         
     });
     
     $(document).keyup(function(){
     $('.key').removeClass('pressed');
+    if(presses>=sentEnd){
+        whichSent++;
+        $('#sentence').text(sentences[whichSent]);
+        presses=0;
+    }else if(whichSent>sentences.length){
+        
+        $('#sentence').text('Game Over');
+    }
+    console.log('Sentence: ' +whichSent+ ' Length: ' + sentEnd + ' Presses: ' + presses);
     });
 
-
-
+// Adds sentences to div#sentence
+    let sentences = ['ten ate neite ate nee enet ite ate inet ent eate', 'Too ato too nOt enot one totA not anot tOO aNot', 'oat itain oat tain nate eate tea anne inant nean', 'itant eate anot eat nato inate eat anot tain eat', 'nee ene ate ite tent tiet ent ine ene ete ene ate'];
+    let whichSent = 0;
+    let sentEnd = sentences[whichSent].length;
+    
+    
+    $('#sentence').text(sentences[0]);
+    
