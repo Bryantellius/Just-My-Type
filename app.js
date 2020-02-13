@@ -119,13 +119,14 @@ function findTarget(){
 function gameOver(){
     isPlaying = false;
     clearInterval(startClock);
-    minutes = Math.round(seconds*0.0166667);
-    score = (numberOfWords/minutes) - (2 * numberOfMistakes);
+    minutes = seconds*0.0166667;
+    score = Math.round((numberOfWords/minutes) - (2 * numberOfMistakes));
     $('#yellow-block').css('background-color', 'white');
     $('#sentence').text('');
     $('#feedback').text('');
     $('#target-letter').text('Game Over  ' + 'Score: ' + score);
-    $('.container').append($('<div class="row" id="closer"><button class="col btn btn-primary">Try Again</button></div>'));
+    $('#feedback').append($('<div class="row" id="closer"><button class="col btn btn-primary">Try Again</button></div>'));
+    $(document).off('keypress');
     // Reloads to initiate new game
     $('button').click(function(){
         location.reload(true);
