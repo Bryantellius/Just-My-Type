@@ -107,13 +107,7 @@ function displayTarget(){
     if(isPlaying===true){
         $('#target-letter').text("'" + targetLet + "'");
     }
-    // highlight();
 }
-
-// Highlights target letter
-// function highlight(){
-    
-// }
 
 // Finds target letter from array sentences
 function findTarget(){
@@ -130,5 +124,11 @@ function gameOver(){
     $('#yellow-block').css('background-color', 'white');
     $('#sentence').text('');
     $('#feedback').text('');
-    $('#target-letter').text('Game Over, ' + 'Score: ' + score);
+    $('#target-letter').text('Game Over  ' + 'Score: ' + score);
+    $('.container').append($('<div class="row" id="closer"><button class="col btn btn-primary">Try Again</button></div>'));
+    // Reloads to initiate new game
+    $('button').click(function(){
+        location.reload(true);
+    });
 }
+
