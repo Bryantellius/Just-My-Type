@@ -1,10 +1,10 @@
 // Global variables
-let presses = 0;
+let presses = 1;
 let sentences = ['ten ate neite ate nee enet ite ate inet ent eate', 
-'Too ato too nOt enot one totA not anot tOO aNot', 
+'Too ato too nOt enot one totA not anot tOO aNote', 
 'oat itain oat tain nate eate tea anne inant nean', 
 'itant eate anot eat nato inate eat anot tain eat', 
-'nee ene ate ite tent tiet ent ine ene ete ene ate'];
+'nee ene ate ite tent tiet ent ine ene ete ene at'];
 let whichSent = 0;
 let sentEnd = sentences[whichSent].length;
 let targetLet;
@@ -44,37 +44,34 @@ setInterval(startClock, 1000);
     //Event listeners for keys pressed, highlights each key when pressed
     // Start keypress listener
     $(document).keypress(function(e){
+        // Saves pressed key into target variable
         target = e.which;
+        // Adds .pressed class to key to highlight
         $('#'+event.keyCode).addClass('pressed');
-        // $('#yellow-block').css('left', '+=17.5px');
+        // Sends target into displayFeedback
         displayFeedback(target);
-        presses++;
-        if(whichSent>sentences.length-1){
-            gameOver();
-            return;
-        } else if(presses>=sentEnd){
+        // Decides if at end of sentence, if true, load next sentence, if last sentence, initiate gameOver
+        if(presses>sentEnd-1){
             whichSent++;
-            $('#sentence').text(sentences[whichSent]);
-            $('#feedback').empty('span');
-            // $('#yellow-block').css('left', '142px');
-            presses=0;
-        }else if(isPlaying===true){
-            displayTarget();
+            if(whichSent>sentences.length-1){
+                gameOver();
+                return;
+            }else{
+                $('#sentence').text(sentences[whichSent]);
+                $('#feedback').empty('span');
+            }
+        presses=0;
         }
-        });
+        // Increments presses by 1 for key pressed
+        presses++;
+        // Displays next target letter
+        displayTarget();
+    });
     // End keypress listener
     
     // Start keyup listener
     $(document).keyup(function(){
     $('.key').removeClass('pressed');
-    if(presses>=sentEnd){
-        whichSent++;
-        $('#sentence').text(sentences[whichSent]);
-        $('#feedback').empty('span');
-        // $('#yellow-block').css('left', '142px');
-        presses=0;
-        displayTarget();
-        }
     }); 
     
     
@@ -107,7 +104,7 @@ function displayFeedback(){
 // Displays target value in div#target-letter
 function displayTarget(){
     findTarget();
-    if(!(targetLet===undefined)){
+    if(isPlaying===true){
         $('#target-letter').text("'" + targetLet + "'");
     }
     // highlight();
@@ -120,7 +117,7 @@ function displayTarget(){
 
 // Finds target letter from array sentences
 function findTarget(){
-    targetLet = sentences[whichSent].substring(presses, presses+1);
+    targetLet = sentences[whichSent].substring(presses-1, presses);
     asciiTarget = targetLet.charCodeAt();
 }
 
@@ -128,7 +125,7 @@ function findTarget(){
 function gameOver(){
     isPlaying = false;
     clearInterval(startClock);
-    minutes = Math.floor(seconds*0.0166667);
+    minutes = Math.round(seconds*0.0166667);
     score = (numberOfWords/minutes) - (2 * numberOfMistakes);
     $('#yellow-block').css('background-color', 'white');
     $('#sentence').text('');
