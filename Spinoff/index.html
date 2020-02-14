@@ -12,19 +12,21 @@
 <div class="container">
     <div class="row prompt-container text-center">
         <div class="col-md-12 sentence">
-            <p class="sentenceP">Welcome to Type-Faster Master!</p>
+            <p class="col sentenceP">Welcome to Type-Faster Master!</p>
         </div>
-        <div class="col-md-12 target-letter">
-            <p class="target-letterP">Try and type the sentences quickly and accurately.</p>
+        <div class="col-md-12 target-letter text-end">
+            <p class="col target-letterP">Type the sentences quickly and accurately.</p>
         </div>
-        <div class="col-md-12 feedback justify-content-center">
-            <p class="feedbackP">Click the button to begin!</p>
-            <button class="feedbackBtn btn btn-primary d-block mx-auto my-1">Start</button>
+        <div class="col-md-12 feedback">
+            <p class="col feedbackP">Click the button to begin!</p>        
         </div>
     </div>
-    <div class="row keyboard-container">
+    <div class="row keyboard-container justify-content-center">
+        <div class="targetKey">
+            <button class="feedbackBtn btn btn-primary d-block mx-auto">Start</button>
+        </div>
         <div class="col-md-12 upper-keyboard">
-            <div class="col-md-12 text-center" id="keyboard-upper-container" hidden>
+            <div class="col-md-12 text-center keyboard-container" id="keyboard-upper-container">
                 <div class="col-md-12 keys-row">
                     <span class="key" id="126">~</span>
                     <span class="key" id="33">!</span>
