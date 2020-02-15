@@ -18,6 +18,7 @@ let seconds = 0;
 let minutes;
 let numberOfMistakes = 0;
 let isPlaying = true;
+let input;
 
 // Adds sentences to div#sentence
 $('.sentenceP').text(sentences[0]);
@@ -50,8 +51,11 @@ setInterval(startClock, 1000);
     $(document).keypress(function(e){
         // Saves pressed key into target variable
         target = e.which;
+        input = target;
         // Adds .pressed class to key to highlight
         $('#'+event.keyCode).addClass('pressed');
+        // Displays input
+        displayInput();
         // Sends target into displayFeedback
         displayFeedback(target);
         // Decides if at end of sentence, if true, load next sentence, if last sentence, initiate gameOver
@@ -63,6 +67,7 @@ setInterval(startClock, 1000);
             }else{
                 $('.sentenceP').text(sentences[whichSent]);
                 $('.feedbackP').empty('span');
+                $('.target-letterP').empty('span');
             }
         presses=0;
         }
@@ -98,9 +103,9 @@ function correctKey(target){
 // Displays feedback
 function displayFeedback(){
     if(correctKey(target)){
-        $('.feedbackP').append('<span class="glyphicon glyphicon-ok"></span>');
+        $('.feedbackP').css('color', 'green').text('Correct!');
     }else{
-        $('.feedbackP').append('<span class="glyphicon glyphicon-remove"></span>');
+        $('.feedbackP').css('color', 'red').text('nope');
         numberOfMistakes++;
     }
 };
@@ -119,6 +124,10 @@ function findTarget(){
     asciiTarget = targetLet.charCodeAt();
 }
 
+// 
+function displayInput(){
+    
+}
 // Game over
 function gameOver(){
     isPlaying = false;
@@ -129,7 +138,7 @@ function gameOver(){
     $('.sentenceP').text('');
     $('.feedbackP').text('');
     $('.target-letter').text('Game Over  ' + 'Score: ' + score);
-    $('.feedback').append($('<button class="btn btn-primary d-block mx-auto my-1">Try Again</button>'));
+    $('.feedback').append($('<button class="btn btn-lg btn-primary d-block mx-auto my-1">Try Again</button>'));
     $(document).off('keypress');
     // Reloads to initiate new game
     $('button').click(function(){
