@@ -7,6 +7,7 @@
 .prompt-container{
     padding: 0.75rem 0;
     background-color: white;
+    height: 150px;
 }
 .keys-row{
     margin: 0.60rem;
@@ -28,6 +29,9 @@
     margin: 0.5rem 0.5rem 0.5rem 5rem;
     padding: 0 1rem;
     width: fit-content;
+}
+.target-letter{
+    font-size: 30px;
 }
 .keyboard-container{
     background-color: rgb(225, 225, 225);
