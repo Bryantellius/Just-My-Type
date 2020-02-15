@@ -4,16 +4,22 @@ $('.feedbackP').empty();
 
 // Global variables
 let presses = 1;
-let sentences = ['ten ate neite ate nee enet ite ate inet ent eate', 
-'Too ato too nOt enot one totA not anot tOO aNote', 
-'oat itain oat tain nate eate tea anne inant nean', 
-'itant eate anot eat nato inate eat anot tain eat', 
-'nee ene ate ite tent tiet ent ine ene ete ene at'];
+
+let sentences = ["We've always defined ourselves by the ability",
+"to overcome the impossible. And we count these moments.",
+"These moments when we dare to aim higher, to break barriers,",
+"to reach for the stars, to make the unknown known.",
+"We count these moments as our proudest achievements.",
+"But we lost all that. Or perhaps we've just forgotten",
+"that we are still pioneers. And we've barely begun.",
+"And that our greatest accomplishments cannot be behind us,",
+"because our destiny lies above us. -Interstellar"]
+
 let whichSent = 0;
 let sentEnd = sentences[whichSent].length;
 let targetLet;
 let score;
-const numberOfWords = 54;
+const numberOfWords = 80;
 let seconds = 0;
 let minutes;
 let numberOfMistakes = 0;
@@ -69,7 +75,8 @@ setInterval(startClock, 1000);
                 $('.feedbackP').empty('span');
                 $('.target-letterP').empty('span');
             }
-        presses=0;
+            sentEnd = sentences[whichSent].length;
+            presses=0;
         }
         // Increments presses by 1 for key pressed
         presses++;
@@ -126,14 +133,18 @@ function findTarget(){
 
 // 
 function displayInput(){
-    
+    if(asciiTarget===target){
+        $('.target-letterP').append('<span>'+targetLet+'</span>');
+    }else{
+        $('.target-letterP').append('<span>-</span>');
+    }
 }
 // Game over
 function gameOver(){
     isPlaying = false;
     clearInterval(startClock);
     minutes = seconds*0.0166667;
-    score = Math.round((numberOfWords/minutes) - (2 * numberOfMistakes));
+    score = Math.round((numberOfWords/minutes) - (1.25 * numberOfMistakes));
     $('#yellow-block').css('background-color', 'white');
     $('.sentenceP').text('');
     $('.feedbackP').text('');
