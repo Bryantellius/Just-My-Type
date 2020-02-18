@@ -18,7 +18,8 @@ $('button').click(function(){
     
     let whichSent = 0;
     let score;
-    const numberOfWords = 80;
+    const characters = 384;
+    const numberOfWords = characters/5;
     let seconds = 0;
     let minutes = 0;
     let isPlaying = true;
@@ -113,7 +114,6 @@ $('button').click(function(){
             seconds=0;
             $('.targetKey').text(minutes+":"+seconds);
         } else {
-            seconds++;
         $('.targetKey').text(minutes+":"+seconds);
         }
         seconds++;
@@ -128,7 +128,10 @@ $('button').click(function(){
         isPlaying = false;
         clearInterval(displayTime);
         minutes = minutes + (seconds*0.0166667);
+        // score = Math.round((numberOfWords/minutes));
         score = Math.round((numberOfWords/minutes));
+        console.log(numberOfWords+'/'+minutes+' = '+score);
+        $('.endInfo').show();
         $('.sentenceP').hide();
         $('.feedbackP').hide();
         $('.targetKey').hide();
