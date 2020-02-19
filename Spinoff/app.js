@@ -2,6 +2,7 @@ $('button').click(function(){
     $('.instructions').hide();
     $('.sentenceP').show();
     $('.feedbackP').show();
+    $('.form-control').show();
     $('.targetKey').empty();
     
     // Global variables
@@ -125,6 +126,8 @@ $('button').click(function(){
 
     // Game over
     function gameOver(){
+        $(document).off('keypress');
+        $(document).off('keyup');
         isPlaying = false;
         clearInterval(displayTime);
         minutes = minutes + (seconds*0.0166667);
@@ -135,10 +138,11 @@ $('button').click(function(){
         $('.sentenceP').hide();
         $('.feedbackP').hide();
         $('.targetKey').hide();
+        $('.form-control').hide();
+        $('.typing').text('The average typing speed is 41wpm.');
         $('input').val('');
         $('.instructions').show().text('Game Over  ' + 'Score: ' + score + 'wpm');
         $('.prompt-container').append($('<button class="btn btn-lg btn-primary mx-auto my-1">Try Again</button>'));
-        $(document).off('keypress');
         // Reloads to initiate new game
         $('button').click(function(){
             location.reload(true);
