@@ -39,7 +39,7 @@
 ## BONUS
 
 - Find a way to highlight the currently expected letter in the on-screen sentence that should be typed next
-  - One way, is to create a div that highlights the currently exprected letter, and moves down the sentence at a fixed number of pixels
+  - One way, is to create a div that highlights the currently expected letter, and moves down the sentence at a fixed number of pixels
     - Remember to reset it back to the beginning of the sentence when you move to the next sentence
 
 ## Resources
