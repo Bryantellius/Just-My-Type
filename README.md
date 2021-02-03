@@ -15,9 +15,9 @@
 - When keys are pressed, they should be highlighted in the browser.
   - Hint: the letters should be matched with the corresponding ascii code. 
   - The id value of the key in the html corresponds to the ASCII character code that you can access in the keyboard listener. For example, ascii value 65 is A, and 97 is a. 
-  - Here's a complete list of [ACSII codes]("https://www.ascii-code.com/").
+  - Here's a complete list of [ACSII codes](https://www.ascii-code.com/).
 - Display each sentence at the top of the page, one sentence at a time. Once the sentence has been completed, the next in line should appear. 
-- If you need an array of starter sentences, check [resources]("#Resources"):
+- If you need an array of starter sentences, check [resources](#Resources):
 
 - Display the currently expected to the user
 - For each sentence, show a visual "log" of right/wrong character inputs for each of the following:
